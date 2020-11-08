@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block container %}
+    <!-- Page Content -->
+    <div class="container" style="min-height: 80vh;">
+
+        <!-- Page Heading/Breadcrumbs -->
+        <h1 class="mt-4 mb-3">Register
+            <small>Form</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active">Register</li>
+        </ol>
+        <!-- Content Row -->
+        <div class="row">
+            <div class="col-lg-4 mb-4">
+                <form name="sentMessage" id="contactForm" novalidate>
+                    <div class="control-group form-group">
+                        <div class="controls">
+                            <label>First Name*</label>
+                            <input type="text" class="form-control" id="first_name" required data-validation-required-message="Please enter your first name.">
+                            <p class="help-block"></p>
+                        </div>
+                    </div>
+                    <div class="controls">
+                        <label>Last Name*</label>
+                        <input type="text" class="form-control" id="last_name" required data-validation-required-message="Please enter your last name.">
+                        <p class="help-block"></p>
+                    </div>
+                    <div class="control-group form-group">
+                        <div class="controls">
+                            <label>Email*</label>
+                            <input type="email" class="form-control" id="email" required data-validation-required-message="Please enter your email.">
+                            <p class="help-block"></p>
+                        </div>
+                    </div>
+                    <div class="control-group form-group">
+                        <div class="controls">
+                            <label>Password*</label>
+                            <input type="password" class="form-control" id="password" required data-validation-required-message="Please enter your password.">
+                        </div>
+                    </div>
+                    <div class="control-group form-group">
+                        <div class="controls">
+                            <label>Confirm Password*</label>
+                            <input type="password" class="form-control" id="confirm-password" required data-validation-required-message="Please confirm your password.">
+                        </div>
+                    </div>
+                    <div id="success"></div>
+                    <!-- For success/fail messages -->
+                    <button type="submit" class="btn btn-primary" id="login-btn">Register</button>
+                </form>
+            </div>
+        </div>
+        <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+{% endblock container %}
+
