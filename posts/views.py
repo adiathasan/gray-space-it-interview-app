@@ -9,7 +9,8 @@ url = 'https://jsonplaceholder.typicode.com'
 def posts(request):
     start_post = request.GET.get("start", 0)
     limit_post = request.GET.get("limit", 10)
-    res = requests.get(f'{url}/posts?_start={start_post}&_limit={limit_post}')
+    res = requests.get(
+        f'{url}/posts?_start={start_post}&_limit={limit_post}')
     if res:
         posts = res.json()
         context = {"posts": posts, "pagination":  range(
