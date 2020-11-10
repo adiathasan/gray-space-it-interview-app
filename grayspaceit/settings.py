@@ -39,12 +39,16 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'authentication',
     'posts',
-    'crispy_forms'
+    'api',
+    'rest_framework',
+    'crispy_forms',
+    'corsheaders',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -53,6 +57,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+CORES_ORIGIN_ALLOW_ALL = True
 
 ROOT_URLCONF = 'grayspaceit.urls'
 
@@ -129,3 +135,6 @@ STATIC_ROOT = str(BASE_DIR / "staticfiles")
 STATIC_URL = "/static/"
 # https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
 STATICFILES_DIRS = [str(BASE_DIR / "static")]
+
+
+AUTH_USER_MODEL = 'api.UserProfile'
