@@ -15,69 +15,10 @@
 			<form method="POST" action="">
 				{{ user_form|crispy }} {% csrf_token %}
 
-				<!-- <div class="control-group form-group">
-					<div class="controls">
-						<label>First Name*</label>
-						<input
-							type="text"
-							class="form-control"
-							id="first_name"
-							required
-							data-validation-required-message="Please enter your first name."
-						/>
-						<p class="help-block"></p>
-					</div>
+				<div id="success">
+					{% for message in messages %} {{message}} {% endfor %}
 				</div>
-				<div class="controls">
-					<label>Last Name*</label>
-					<input
-						type="text"
-						class="form-control"
-						id="last_name"
-						required
-						data-validation-required-message="Please enter your last name."
-					/>
-					<p class="help-block"></p>
-				</div>
-				<div class="control-group form-group">
-					<div class="controls">
-						<label>Email*</label>
-						<input
-							type="email"
-							class="form-control"
-							id="email"
-							required
-							data-validation-required-message="Please enter your email."
-						/>
-						<p class="help-block"></p>
-					</div>
-				</div>
-				<div class="control-group form-group">
-					<div class="controls">
-						<label>Password*</label>
-						<input
-							type="password"
-							class="form-control"
-							id="password"
-							required
-							data-validation-required-message="Please enter your password."
-						/>
-					</div>
-				</div>
-				<div class="control-group form-group">
-					<div class="controls">
-						<label>Confirm Password*</label>
-						<input
-							type="password"
-							class="form-control"
-							id="confirm-password"
-							required
-							data-validation-required-message="Please confirm your password."
-						/>
-					</div>
-				</div>
-				<div id="success"></div> -->
-				<!-- For success/fail messages -->
+
 				<button type="submit" class="btn btn-primary" id="login-btn">
 					Register
 				</button>
@@ -86,5 +27,6 @@
 	</div>
 	<!-- /.row -->
 </div>
+<h4>Already have an account? <a href="{% url 'login' %}">Login</a></h4>
 <!-- /.container -->
 {% endblock container %}
