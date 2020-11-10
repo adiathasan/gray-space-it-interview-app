@@ -1,0 +1,2 @@
+export const LOADER_REQUEST = 'LOADER_REQUEST';
+export const LOADER_SUCCESS = 'LOADER_SUCCESS';

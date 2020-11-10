@@ -1,0 +1,42 @@
+.root {
+	flex-grow: 1;
+	z-index: 1000;
+	background: var(--primary-color);
+	color: white;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	transition: all 0.3s ease-in;
+}
+
+.headerActive {
+	flex-grow: 1;
+	z-index: 1000;
+	background: var(--primary-color);
+	color: white;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	background-color: #042f5ff1;
+	transition: all 0.3s ease-in;
+}
+
+.title {
+	flex-grow: 1;
+	position: relative;
+}
+
+.title__image {
+	height: 30px;
+	z-index: 100;
+}
+
+.title__text {
+	position: absolute;
+	z-index: 1;
+	top: 0.3rem;
+	left: 0.5rem;
+	color: #034294e0;
+}
