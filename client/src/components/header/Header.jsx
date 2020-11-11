@@ -50,7 +50,7 @@ const Header = () => {
 			<Toolbar>
 				<Typography variant='h5' className='title'>
 					<NavLink to='/' exact>
-						C<span>o</span>deBl<span>o</span>g
+						CodeBlog
 					</NavLink>
 				</Typography>
 

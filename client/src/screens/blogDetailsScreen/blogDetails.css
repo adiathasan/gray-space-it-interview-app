@@ -101,3 +101,9 @@ main > img {
 	border-radius: 10px;
 	box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.5);
 }
+
+@media (max-width: 450px) {
+	header h1 {
+		font-size: 1.4rem;
+	}
+}

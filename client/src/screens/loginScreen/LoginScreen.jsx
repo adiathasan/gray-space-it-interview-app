@@ -6,6 +6,7 @@ import Message from '../../components/message/Message';
 import { useSelector, useDispatch } from 'react-redux';
 import { userLoginAction } from '../../actions/userActions';
 import validator from 'validator';
+import { Helmet } from 'react-helmet';
 
 const LoginScreen = () => {
 	const [email, setEmail] = useState('');
@@ -68,6 +69,9 @@ const LoginScreen = () => {
 		<>
 			{alertMessage && <Message message={alertMessage} type={messageType} />}
 			<div className='login'>
+				<Helmet>
+					<title>CodeBlog | Login</title>
+				</Helmet>
 				<form
 					className='login__form'
 					noValidate

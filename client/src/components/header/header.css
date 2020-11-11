@@ -40,11 +40,6 @@
 	transform: translateY(-1px);
 }
 
-.title span {
-	text-transform: uppercase;
-	font-size: 1.32rem;
-}
-
 .title__image {
 	height: 30px;
 	z-index: 100;

@@ -19,6 +19,7 @@ import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPostByIdAction } from '../../actions/postActions';
 import { Skeleton } from '@material-ui/lab';
+import { Helmet } from 'react-helmet';
 import Message from '../../components/message/Message';
 
 const useStyles = makeStyles({
@@ -93,6 +94,9 @@ const BlogDetailsScreen = () => {
 		</div>
 	) : (
 		<div className='blogDetails p-x'>
+			<Helmet>
+				<title>CodeBlog | {post.data?.title.toUpperCase()}</title>
+			</Helmet>
 			<header>
 				<h1>{post.data?.title}</h1>
 				<section>

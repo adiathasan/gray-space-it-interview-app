@@ -5,6 +5,7 @@ import HomeScreen from './screens/homeScreen/HomeScreen';
 import LoginScreen from './screens/loginScreen/LoginScreen';
 import RegisterScreen from './screens/registerScreen/RegisterScreen';
 import BlogDetailsScreen from './screens/blogDetailsScreen/BlogDetailsScreen';
+import Footer from './components/footer/Footer';
 const App = () => {
 	return (
 		<Router>
@@ -17,6 +18,7 @@ const App = () => {
 						<Route path='/login' component={LoginScreen} />
 						<Route path='/' component={HomeScreen} exact />
 					</Switch>
+					<Footer />
 				</div>
 			</div>
 		</Router>

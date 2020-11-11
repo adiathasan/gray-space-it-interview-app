@@ -10,6 +10,12 @@
 	display: none;
 }
 
+.home > h1 {
+	text-align: center;
+	text-shadow: 2px 1px 1px #0a2236b6;
+	color: #0a2236;
+}
+
 .home__blog {
 	background-color: white;
 	width: 600px;

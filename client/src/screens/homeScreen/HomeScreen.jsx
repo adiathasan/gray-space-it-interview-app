@@ -5,6 +5,7 @@ import { instanceOfAxiosPosts } from '../../config/Axios';
 import { Link } from 'react-router-dom';
 import Form from '../../components/form/Form';
 import SkeletonCustome from '../../components/skeleton/SkeletonCustome';
+import { Helmet } from 'react-helmet';
 
 const truncateString = (str, num) => {
 	if (str.length <= num) {
@@ -37,6 +38,10 @@ const HomeScreen = () => {
 	});
 	return (
 		<div className='home p-x' onScroll={handleInfiniteScroll}>
+			<Helmet>
+				<title>CodeBlog | Home</title>
+			</Helmet>
+			<h1>Daily Blogs</h1>
 			{status === 'loading' ? (
 				<SkeletonCustome total={10} width={600} height={118} type='rect' />
 			) : (
