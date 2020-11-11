@@ -1,43 +1,67 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import './register.css';
 import { Button, TextField, Typography } from '@material-ui/core';
 import Message from '../../components/message/Message';
+import { useSelector, useDispatch } from 'react-redux';
+import validator from 'validator';
+import { userRegsterAction } from '../../actions/userActions';
 
 const RegisterScreen = () => {
 	const [email, setEmail] = useState('');
+	const [validateEmail, setValidateEmail] = useState(true);
 	const [password, setPassword] = useState('');
+	const [validatePassword, setValidatePassword] = useState(true);
 	const [confirmPassword, setConfirmPassword] = useState('');
+	const [validateConfirmPassword, setValidateConfirmPassword] = useState(true);
 	const [alertMessage, setAlertMessage] = useState(null);
 	const [messageType, setMessageType] = useState(null);
 
-	// const router = useRouter();
+	const dispatch = useDispatch();
 
-	// const [LoginUser, LogoutUser] = useAuth();
+	const { user } = useSelector((state) => state.userInfo);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		console.log(email, password);
-		if (email === '' || password === '') {
-			setAlertMessage(`Oops! email or password is empty`);
+		if (validatePassword && validateConfirmPassword && validateEmail) {
+			dispatch(userRegsterAction({ email, password }));
+		} else {
+			setAlertMessage(`Oops! Missing required fields`);
 			setMessageType('error');
 			setTimeout(() => {
 				setAlertMessage(null);
-			}, 6000);
-		} else {
-			// LoginUser({ email, password });
+			}, 8000);
 		}
 	};
 
-	// const {redirect} = useParams();
+	const history = useHistory();
 
-	// const redirect = redirect ? router.query.redirect : '/';
+	useEffect(() => {
+		if (user) {
+			history.push('/');
+		}
+	}, [history, user]);
 
-	// useEffect(() => {
-	//   if (user) {
-	//     router.push(redirect);
-	//   }
-	// }, [LogoutUser, user]);
+	useEffect(() => {
+		if (email === '') {
+			setValidateEmail(true);
+		} else {
+			setValidateEmail(validator.isEmail(email));
+		}
+		if (password.length >= 6) {
+			setValidatePassword(true);
+			if (validator.equals(password, confirmPassword)) {
+				setValidatePassword(true);
+				setValidateConfirmPassword(true);
+			} else {
+				setValidatePassword(false);
+				setValidateConfirmPassword(false);
+			}
+		} else {
+			setValidatePassword(false);
+			setValidateConfirmPassword(false);
+		}
+	}, [password, confirmPassword, email]);
 
 	return (
 		<>
@@ -52,6 +76,7 @@ const RegisterScreen = () => {
 						Register
 					</Typography>
 					<TextField
+						error={!validateEmail}
 						fullWidth
 						className='register__input'
 						label='Email'
@@ -64,6 +89,7 @@ const RegisterScreen = () => {
 					/>
 
 					<TextField
+						error={!validatePassword}
 						fullWidth
 						className='register__input'
 						label='Password'
@@ -75,6 +101,7 @@ const RegisterScreen = () => {
 						value={password}
 					/>
 					<TextField
+						error={!validateConfirmPassword}
 						fullWidth
 						className='register__input'
 						label='Confirm Password'

@@ -6,7 +6,7 @@ const useStyles = makeStyles({
 	root: {
 		width: '100%',
 		position: 'absolute',
-		top: 0,
+		top: '1px',
 		left: 0,
 		height: '4px',
 	},
@@ -14,7 +14,7 @@ const useStyles = makeStyles({
 
 const Loader = () => {
 	const classes = useStyles();
-	const [progress, setProgress] = useState(0);
+	const [progress, setProgress] = useState(100);
 
 	useEffect(() => {
 		const timer = setInterval(() => {
@@ -34,7 +34,11 @@ const Loader = () => {
 
 	return (
 		<div className={classes.root}>
-			<LinearProgress color='primary' variant='determinate' value={progress} />
+			<LinearProgress
+				color='secondary'
+				variant='determinate'
+				value={progress}
+			/>
 		</div>
 	);
 };

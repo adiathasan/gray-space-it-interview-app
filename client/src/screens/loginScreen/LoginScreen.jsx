@@ -5,31 +5,32 @@ import { Button, TextField, Typography } from '@material-ui/core';
 import Message from '../../components/message/Message';
 import { useSelector, useDispatch } from 'react-redux';
 import { userLoginAction } from '../../actions/userActions';
+import validator from 'validator';
 
 const LoginScreen = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [alertMessage, setAlertMessage] = useState(null);
 	const [messageType, setMessageType] = useState(null);
+	const [validateEmail, setValidateEmail] = useState(true);
+	const [validatePassword, setValidatePassword] = useState(true);
 
 	const { user } = useSelector((state) => state.userInfo);
 
 	const history = useHistory();
 
-	console.log(user);
-
 	const dispatch = useDispatch();
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		if (email === '' || password === '') {
+		if (validatePassword && validateEmail) {
+			dispatch(userLoginAction({ email, password }));
+		} else {
 			setAlertMessage(`Oops! email or password is empty`);
 			setMessageType('error');
 			setTimeout(() => {
 				setAlertMessage(null);
-			}, 6000);
-		} else {
-			dispatch(userLoginAction({ email, password }));
+			}, 8000);
 		}
 	};
 
@@ -42,6 +43,19 @@ const LoginScreen = () => {
 			history.push(redirect);
 		}
 	}, [user, history, redirect]);
+
+	useEffect(() => {
+		if (email === '') {
+			setValidateEmail(true);
+		} else {
+			setValidateEmail(validator.isEmail(email));
+		}
+		if (password.length >= 6) {
+			setValidatePassword(true);
+		} else {
+			setValidatePassword(false);
+		}
+	}, [password, email]);
 
 	return (
 		<>
@@ -57,6 +71,7 @@ const LoginScreen = () => {
 					</Typography>
 
 					<TextField
+						error={!validateEmail}
 						fullWidth
 						className='login__input'
 						label='Email'
@@ -69,6 +84,7 @@ const LoginScreen = () => {
 					/>
 
 					<TextField
+						error={!validatePassword}
 						fullWidth
 						className='login__input'
 						label='Password'

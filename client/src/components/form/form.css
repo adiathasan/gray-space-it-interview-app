@@ -1,0 +1,17 @@
+.top {
+	margin-bottom: 2rem;
+	width: 100%;
+	padding: 2rem;
+	border-radius: 10px;
+	background-color: rgb(209, 218, 218);
+	box-shadow: 0 0 13px -5px #0000007e;
+}
+
+.top > form {
+	width: 98%;
+}
+
+.top > form > button {
+	margin-top: 0.5rem;
+	width: 100px;
+}

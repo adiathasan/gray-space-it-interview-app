@@ -1,20 +1,21 @@
 .message {
-  position: absolute;
-  top: 3.4rem;
-  right: 0rem;
-  transition: 0.5s ease-in all;
-  animation: slide-down 0.5s ease-in forwards;
-  width: 400px;
-  max-width: 90%;
+	position: absolute;
+	top: 3.4rem;
+	right: 0rem;
+	transition: 0.5s ease-in all;
+	animation: slide-down 0.5s ease-in forwards;
+	width: 400px;
+	max-width: 90%;
+	z-index: 1000;
 }
 
 @keyframes slide-down {
-  from {
-    opacity: 0;
-    transform: translateX(50vh);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+	from {
+		opacity: 0;
+		transform: translateX(50vh);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
 }

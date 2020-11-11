@@ -4,12 +4,18 @@ import Typography from '@material-ui/core/Typography';
 import { NavLink } from 'react-router-dom';
 import './header.css';
 import Loader from '../loader/Loader';
-import Message from '../message/Message';
 import { useSelector, useDispatch } from 'react-redux';
 import { LOGOUT_USER } from '../../constants/USER_CONSTANTS';
-import { Button } from '@material-ui/core';
+import { Button, makeStyles } from '@material-ui/core';
+
+const useStyles = makeStyles({
+	register: {
+		margin: '0 .5rem',
+	},
+});
 
 const Header = () => {
+	const classes = useStyles();
 	const [isHeaderActive, setIsHeaderActive] = useState(false);
 
 	const { isLoading } = useSelector((state) => state.loader);
@@ -33,10 +39,11 @@ const Header = () => {
 	return (
 		<div className={isHeaderActive ? 'headerActive' : 'root'}>
 			{isLoading ? <Loader /> : ''}
-			<Message message='testing buddy' />
 			<Toolbar>
 				<Typography variant='h5' className='title'>
-					<NavLink to='/'>CodeBlog</NavLink>
+					<NavLink to='/' exact>
+						C<span>o</span>deBl<span>o</span>g
+					</NavLink>
 				</Typography>
 
 				{user ? (
@@ -50,11 +57,19 @@ const Header = () => {
 					</Typography>
 				) : (
 					<>
-						<Typography variant='body1'>
-							<NavLink to='/register'>Register</NavLink>
+						<Typography variant='body1' className={classes.register}>
+							<NavLink to='/register'>
+								<Button variant='contained' color='primary'>
+									Register
+								</Button>
+							</NavLink>
 						</Typography>
 						<Typography variant='body1'>
-							<NavLink to='/login'>Login</NavLink>
+							<NavLink to='/login'>
+								<Button variant='contained' color='primary'>
+									Login
+								</Button>
+							</NavLink>
 						</Typography>
 					</>
 				)}
