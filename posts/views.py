@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, Http404
 import requests
 
 url = 'https://jsonplaceholder.typicode.com'
@@ -11,7 +11,10 @@ def posts(request):
     limit_post = request.GET.get("limit", 10)
     res = requests.get(
         f'{url}/posts?_start={start_post}&_limit={limit_post}')
-    if res:
+
+    if res.status_code == 404:
+        raise Http404
+    if res.ok:
         posts = res.json()
         context = {"posts": posts, "pagination":  range(
             1, int(100/int(limit_post))),  "limit_post": int(limit_post), "active": int(start_post)/int(limit_post), "title": "CodeBlog"}
@@ -23,6 +26,10 @@ def posts(request):
 # POST DETAILS VIEW ENDPOINT
 def post_details(request, pk):
     res_post = requests.get(f'{url}/posts/{pk}')
+
+    if res_post.status_code == 404:
+        raise Http404
+
     post = res_post.json()
 
     # /posts/1/comments
