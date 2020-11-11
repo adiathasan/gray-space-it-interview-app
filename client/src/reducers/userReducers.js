@@ -1,6 +1,6 @@
 import * as userTypes from '../constants/USER_CONSTANTS';
 
-export const userReducer = (state = { user: null }, action) => {
+export const userReducer = (state = { user: null, error: null }, action) => {
 	switch (action.type) {
 		case userTypes.SIGNUP_USER_SUCCESS:
 			return {
@@ -21,10 +21,16 @@ export const userReducer = (state = { user: null }, action) => {
 				...state,
 				error: action.payload,
 			};
+		case userTypes.ERROR_RESET:
+			return {
+				...state,
+				error: null,
+			};
 		case userTypes.LOGOUT_USER:
 			localStorage.removeItem('user');
 			return {
 				user: null,
+				error: null,
 			};
 
 		default:

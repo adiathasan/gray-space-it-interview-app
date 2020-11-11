@@ -6,11 +6,19 @@ import './header.css';
 import Loader from '../loader/Loader';
 import { useSelector, useDispatch } from 'react-redux';
 import { LOGOUT_USER } from '../../constants/USER_CONSTANTS';
-import { Button, makeStyles } from '@material-ui/core';
+import { Avatar, Button, makeStyles } from '@material-ui/core';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 const useStyles = makeStyles({
 	register: {
 		margin: '0 .5rem',
+	},
+	avatar: {
+		margin: '0 .5rem',
+		transform: 'scale(.95)',
+		background: 'rgba(0, 0, 0, .5)',
+		cursor: 'pointer',
+		boxShadow: '0 0 10px -2px rgba(0, 0, 0, .5)',
 	},
 });
 
@@ -47,14 +55,19 @@ const Header = () => {
 				</Typography>
 
 				{user ? (
-					<Typography variant='body1'>
-						<Button
-							onClick={() => logoutUser()}
-							variant='contained'
-							color='primary'>
-							Logout
-						</Button>
-					</Typography>
+					<>
+						<Avatar className={classes.avatar}>
+							<AccountCircleIcon />
+						</Avatar>
+						<Typography variant='body1'>
+							<Button
+								onClick={() => logoutUser()}
+								variant='contained'
+								color='primary'>
+								Logout
+							</Button>
+						</Typography>
+					</>
 				) : (
 					<>
 						<Typography variant='body1' className={classes.register}>

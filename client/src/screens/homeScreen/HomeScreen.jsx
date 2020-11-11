@@ -4,7 +4,7 @@ import { useQuery } from 'react-query';
 import { instanceOfAxiosPosts } from '../../config/Axios';
 import { Link } from 'react-router-dom';
 import Form from '../../components/form/Form';
-import { Skeleton } from '@material-ui/lab';
+import SkeletonCustome from '../../components/skeleton/SkeletonCustome';
 
 const truncateString = (str, num) => {
 	if (str.length <= num) {
@@ -38,24 +38,7 @@ const HomeScreen = () => {
 	return (
 		<div className='home p-x' onScroll={handleInfiniteScroll}>
 			{status === 'loading' ? (
-				<>
-					{Array(10)
-						.fill('', 1, 10)
-						.map((a, i) => (
-							<Skeleton
-								key={i}
-								style={{
-									maxWidth: '100%',
-									margin: '1rem auto',
-									borderRadius: '10px',
-								}}
-								animation='wave'
-								variant='rect'
-								width={600}
-								height={118}
-							/>
-						))}
-				</>
+				<SkeletonCustome total={10} width={600} height={118} type='rect' />
 			) : (
 				<>
 					<Form placeholder={"What's on your mind!"} />
@@ -66,7 +49,7 @@ const HomeScreen = () => {
 								to={`/blogs/${post.id}`}
 								className='home__blog'>
 								<img
-									src='https://images.unsplash.com/photo-1564865878688-9a244444042a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80'
+									src='https://rissputra.files.wordpress.com/2017/09/hard-work-beats-talent.jpg'
 									alt='blog_image'
 								/>
 								<div className='home__blogRight'>

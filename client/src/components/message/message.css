@@ -1,12 +1,11 @@
 .message {
 	position: absolute;
-	top: 3.4rem;
+	top: 4rem;
 	right: 0rem;
 	transition: 0.5s ease-in all;
 	animation: slide-down 0.5s ease-in forwards;
 	width: 400px;
 	max-width: 90%;
-	z-index: 1000;
 }
 
 @keyframes slide-down {

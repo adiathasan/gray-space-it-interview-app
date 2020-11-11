@@ -19,7 +19,7 @@ const RegisterScreen = () => {
 
 	const dispatch = useDispatch();
 
-	const { user } = useSelector((state) => state.userInfo);
+	const { user, error } = useSelector((state) => state.userInfo);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -40,7 +40,14 @@ const RegisterScreen = () => {
 		if (user) {
 			history.push('/');
 		}
-	}, [history, user]);
+		if (error) {
+			setAlertMessage(error);
+			setMessageType('error');
+			setTimeout(() => {
+				setAlertMessage(null);
+			}, 8000);
+		}
+	}, [history, user, error]);
 
 	useEffect(() => {
 		if (email === '') {

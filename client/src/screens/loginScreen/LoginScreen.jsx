@@ -15,7 +15,7 @@ const LoginScreen = () => {
 	const [validateEmail, setValidateEmail] = useState(true);
 	const [validatePassword, setValidatePassword] = useState(true);
 
-	const { user } = useSelector((state) => state.userInfo);
+	const { user, error } = useSelector((state) => state.userInfo);
 
 	const history = useHistory();
 
@@ -42,7 +42,14 @@ const LoginScreen = () => {
 		if (user) {
 			history.push(redirect);
 		}
-	}, [user, history, redirect]);
+		if (error) {
+			setAlertMessage(error);
+			setMessageType('error');
+			setTimeout(() => {
+				setAlertMessage(null);
+			}, 8000);
+		}
+	}, [user, history, redirect, error]);
 
 	useEffect(() => {
 		if (email === '') {

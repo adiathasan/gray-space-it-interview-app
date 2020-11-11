@@ -7,8 +7,7 @@
 }
 
 .home::-webkit-scrollbar {
-	background-color: #1a8af38c;
-	width: 5px;
+	display: none;
 }
 
 .home__blog {
