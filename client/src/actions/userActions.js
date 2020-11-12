@@ -50,7 +50,7 @@ export const userRegsterAction = (credentials) => async (dispatch) => {
 		dispatch({ type: LOADER_SUCCESS });
 		dispatch({
 			type: SIGNUP_USER_FAILURE,
-			payload: 'Oops! username taken already',
+			payload: 'Oops! email taken already',
 		});
 		setTimeout(() => {
 			dispatch({ type: ERROR_RESET });
